@@ -8,12 +8,12 @@
 
 .brand{display:inline-flex;align-items:center;gap:.55rem;white-space:nowrap}
 .crucible-mark{width:34px;height:34px;display:inline-grid;place-items:center;border-radius:8px;background:#d7fc76;flex:none}
-.crucible-mark::before{content:"";width:23px;height:23px;background:#141a09;clip-path:polygon(0 18%,35% 18%,50% 37%,65% 18%,100% 18%,72% 86%,28% 86%)}
+
 
 h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spacing:-.045em}
 .brand{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:1.5rem}
 .crucible-mark{background:#d7fc76;border-radius:8px}
-.crucible-mark::before{clip-path:polygon(0 20%,28% 36%,50% 8%,72% 36%,100% 20%,80% 78%,20% 78%)}
+
 
 .site-footer{border-top:1px solid #30352e;padding:24px 0;color:#a7afa3;font-size:.85rem}
 .site-footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -21,8 +21,9 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spac
 .site-footer nav a{display:inline-flex;align-items:center;min-height:44px}
 .site-footer a:hover{text-decoration:underline}
 .site-footer .wrap{width:min(760px,calc(100% - 32px));margin:auto}
+.crucible-mark{object-fit:contain;background:transparent}
 </style>
-<header><div><a class="brand" href="/"><span class="crucible-mark" aria-hidden="true"></span>Crucible</a></div></header>
+<header><div><a class="brand" href="/"><img class="crucible-mark" src="/crucible-logo.png" width="34" height="34" alt="">Crucible</a></div></header>
 <main>
 <h1>Contract admin</h1>
 <p class="muted">Manage the Crucible Registry on Base Mainnet.</p>
@@ -48,6 +49,6 @@ h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spac
 <p role="status" id="tx-status"></p>
 </section>
 </main>
-<footer class="site-footer"><div class="wrap"><a class="brand" href="/"><span class="crucible-mark" aria-hidden="true"></span>Crucible</a><nav aria-label="Footer"><a href="/#seeds">Seed board</a><a href="/about">About</a><a href="/help">Help</a><a href="/contact">Contact</a><a href="/admin">Contract admin</a></nav><span>House of Joshi</span></div></footer>
+<footer class="site-footer"><div class="wrap"><a class="brand" href="/"><img class="crucible-mark" src="/crucible-logo.png" width="34" height="34" alt="">Crucible</a><nav aria-label="Footer"><a href="/#seeds">Seed board</a><a href="/about">About</a><a href="/help">Help</a><a href="/contact">Contact</a><a href="/admin">Contract admin</a></nav><span>House of Joshi</span></div></footer>
 <script src="/admin.js"></script>
 </html>

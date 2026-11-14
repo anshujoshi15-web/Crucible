@@ -155,6 +155,10 @@ export default {
       const pages = {'/': 'index.html', '/admin': 'admin.html', '/about': 'about.html', '/help': 'help.html', '/contact': 'contact.html'};
       const file = pages[pathname] ?? pathname.slice(1);
       if (request.method === 'GET' && Object.hasOwn(assets, file)) {
+        if (file === 'crucible-logo.png') {
+          const bytes = Uint8Array.from(atob(assets[file]), character => character.charCodeAt(0));
+          return new Response(bytes, {headers: {...headers, 'Content-Type': 'image/png'}});
+        }
         const type = file.endsWith('.html') ? 'text/html' : 'text/javascript';
         return new Response(assets[file], {headers: {...headers, 'Content-Type': type + '; charset=utf-8'}});
       }
