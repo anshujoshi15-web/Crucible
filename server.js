@@ -1,14 +1,17 @@
 import { createServer } from 'node:http';
 import { mkdir, readdir, readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { DatabaseSync } from 'node:sqlite';
-import worker from '../dist/server/index.js';
+import worker from './dist/server/index.js';
 
-const port = Number(process.env.CRUCIBLE_PORT ?? 8787);
-const host = '127.0.0.1';
-await mkdir('.local', { recursive: true });
-const database = new DatabaseSync('.local/crucible.sqlite');
+const port = Number(process.env.PORT ?? process.env.CRUCIBLE_PORT ?? 8787);
+const host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
+const dataDir = process.env.CRUCIBLE_DATA_DIR ?? '.local';
+if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('Invalid server port.');
+await mkdir(dataDir, { recursive: true, mode: 0o700 });
+const database = new DatabaseSync(join(dataDir, 'crucible.sqlite'));
 database.exec(`
   PRAGMA foreign_keys = ON;
   CREATE TABLE IF NOT EXISTS local_migrations (name TEXT PRIMARY KEY);
@@ -62,8 +65,7 @@ const server = createServer(async (incoming, outgoing) => {
       options.body = Readable.toWeb(incoming);
       options.duplex = 'half';
     }
-    const url = new URL('http://' + host + ':' + port);
-    const request = new Request(url.origin + incoming.url, options);
+    const request = new Request(new URL(incoming.url, 'http://localhost:' + port), options);
     const response = await worker.fetch(request, {DB});
     outgoing.writeHead(response.status, Object.fromEntries(response.headers));
     if (response.body) await pipeline(Readable.fromWeb(response.body), outgoing);
@@ -74,4 +76,4 @@ const server = createServer(async (incoming, outgoing) => {
     else outgoing.writeHead(500).end('Local server error.');
   }
 });
-server.listen(port, host, () => console.log('Crucible is running at http://' + host + ':' + port));
+server.listen(port, host, () => console.log('Crucible is listening on ' + host + ':' + port));
