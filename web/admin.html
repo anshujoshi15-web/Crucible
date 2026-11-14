@@ -4,18 +4,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contract admin · Crucible</title>
 <style>
-:root{color-scheme:dark;font:16px/1.5 system-ui,sans-serif;background:#15111b;color:#f5f4eb;--accent:#e8c783;--line:#45384b;--muted:#c1b5c7}*{box-sizing:border-box}body{margin:0}header{border-bottom:1px solid var(--line);padding:16px 0}main,header div{width:min(760px,calc(100% - 32px));margin:auto}main{padding:38px 0}a{color:var(--accent)}h1{font-size:clamp(2rem,7vw,3.5rem);line-height:1;letter-spacing:-.06em;margin:0 0 16px}h2{margin-top:0}.panel{background:#201a29;border:1px solid var(--line);border-radius:9px;padding:20px;margin:18px 0}label{display:block;margin:10px 0 4px}input,select,button{font:inherit;border-radius:5px;padding:9px 12px}input,select{display:block;width:100%;background:#15111b;color:inherit;border:1px solid #5d4a64}button{background:var(--accent);color:#201a29;border:0;font-weight:650;margin-top:14px;cursor:pointer}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}code{overflow-wrap:anywhere}.muted{color:var(--muted)}#status,#tx-status{overflow-wrap:anywhere}fieldset{border:0;padding:0;margin:0;min-width:0}p:last-child{margin-bottom:0}
+:root{color-scheme:dark;font:16px/1.5 system-ui,sans-serif;background:#0e100f;color:#f5f4eb;--accent:#d7fc76;--line:#30352e;--muted:#a7afa3}*{box-sizing:border-box}body{margin:0}header{border-bottom:1px solid var(--line);padding:16px 0}main,header div{width:min(760px,calc(100% - 32px));margin:auto}main{padding:38px 0}a{color:var(--accent)}h1{font-size:clamp(2rem,7vw,3.5rem);line-height:1;letter-spacing:-.06em;margin:0 0 16px}h2{margin-top:0}.panel{background:#151816;border:1px solid var(--line);border-radius:9px;padding:20px;margin:18px 0}label{display:block;margin:10px 0 4px}input,select,button{font:inherit;border-radius:5px;padding:9px 12px}input,select{display:block;width:100%;background:#0e100f;color:inherit;border:1px solid #41493d}button{background:var(--accent);color:#151816;border:0;font-weight:650;margin-top:14px;cursor:pointer}button:disabled{opacity:.45;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}code{overflow-wrap:anywhere}.muted{color:var(--muted)}#status,#tx-status{overflow-wrap:anywhere}fieldset{border:0;padding:0;margin:0;min-width:0}p:last-child{margin-bottom:0}
 
 .brand{display:inline-flex;align-items:center;gap:.55rem;white-space:nowrap}
-.crucible-mark{width:34px;height:34px;display:inline-grid;place-items:center;border-radius:8px;background:#e8c783;flex:none}
-.crucible-mark::before{content:"";width:23px;height:23px;background:#2d1e18;clip-path:polygon(0 18%,35% 18%,50% 37%,65% 18%,100% 18%,72% 86%,28% 86%)}
+.crucible-mark{width:34px;height:34px;display:inline-grid;place-items:center;border-radius:8px;background:#d7fc76;flex:none}
+.crucible-mark::before{content:"";width:23px;height:23px;background:#141a09;clip-path:polygon(0 18%,35% 18%,50% 37%,65% 18%,100% 18%,72% 86%,28% 86%)}
 
 h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spacing:-.045em}
 .brand{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:1.5rem}
-.crucible-mark{background:linear-gradient(140deg,#f4dba4,#bd9350);box-shadow:inset 0 0 0 1px #f9e3b8;border-radius:8px}
+.crucible-mark{background:#d7fc76;border-radius:8px}
 .crucible-mark::before{clip-path:polygon(0 20%,28% 36%,50% 8%,72% 36%,100% 20%,80% 78%,20% 78%)}
 
-.site-footer{border-top:1px solid #45384b;padding:24px 0;color:#c1b5c7;font-size:.85rem}
+.site-footer{border-top:1px solid #30352e;padding:24px 0;color:#a7afa3;font-size:.85rem}
 .site-footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .site-footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 .site-footer nav a{display:inline-flex;align-items:center;min-height:44px}
