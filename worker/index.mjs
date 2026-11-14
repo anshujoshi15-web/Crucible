@@ -152,7 +152,7 @@ export default {
       if (request.method === 'POST' && pathname === '/api/seeds') return await publish(env.DB, request);
       const route = pathname.match(/^\/api\/seeds\/([a-f0-9]{32})(?:\/(branches|merge\/[a-f0-9]{32}))?$/);
       if (route) return await seedRoute(env.DB, request, route[1], route[2]);
-      const pages = {'/': 'index.html', '/admin': 'admin.html', '/about': 'about.html', '/help': 'help.html'};
+      const pages = {'/': 'index.html', '/admin': 'admin.html', '/about': 'about.html', '/help': 'help.html', '/contact': 'contact.html'};
       const file = pages[pathname] ?? pathname.slice(1);
       if (request.method === 'GET' && Object.hasOwn(assets, file)) {
         const type = file.endsWith('.html') ? 'text/html' : 'text/javascript';
