@@ -12,6 +12,34 @@
   const fallback = document.getElementById(element.dataset.fallback);
   const status = document.getElementById('wallet-status');
 
+  let walletHelp;
+  fallback.addEventListener('click', event => {
+    if (window.crucibleWallet.provider?.request) return;
+    event.stopImmediatePropagation();
+
+    if (!walletHelp) {
+      walletHelp = document.createElement('dialog');
+      walletHelp.className = 'wallet-help';
+      walletHelp.setAttribute('aria-labelledby', 'wallet-help-title');
+      walletHelp.innerHTML = `
+        <h2 id="wallet-help-title">Connect a wallet</h2>
+        <p>On your phone, open Crucible in the MetaMask app and tap Connect wallet again. On a computer, install MetaMask or use another Base-compatible wallet extension, then reload this page.</p>
+        <div class="wallet-help-actions">
+          <a data-metamask>Open in MetaMask</a>
+          <a href="https://metamask.io/download/">Get MetaMask</a>
+          <form method="dialog"><button type="submit">Close</button></form>
+        </div>`;
+      const path = fallback.id === 'connect' ? '/admin' : '/';
+      // Pass only the public page address, since Seed links may carry access keys.
+      const url = location.protocol === 'https:'
+        ? location.host + path
+        : 'crucible.thehouseofjoshi.com' + path;
+      walletHelp.querySelector('[data-metamask]').href = 'https://link.metamask.io/dapp/' + url;
+      document.body.append(walletHelp);
+    }
+    walletHelp.showModal();
+  }, { capture: true });
+
   function setProvider(nextProvider) {
     provider = nextProvider;
     window.dispatchEvent(new Event('crucible-wallet-change'));

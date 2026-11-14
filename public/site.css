@@ -166,3 +166,35 @@ dialog { max-height: 90dvh; }
   .header-actions .wallet-picker > div,
   .header-actions .wallet-picker button { width: 100%; }
 }
+
+.wallet-help {
+  width: min(28rem, calc(100% - 32px));
+  max-height: 90vh;
+  max-height: 90dvh;
+  padding: clamp(18px, 5vw, 28px);
+  border: 1px solid var(--site-line);
+  border-radius: 9px;
+  background: #151816;
+  color: var(--site-ink);
+}
+
+.wallet-help::backdrop { background: #050705c9; }
+.wallet-help h2 { margin: 0 0 12px; }
+.wallet-help p { color: var(--site-muted); }
+.wallet-help-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.wallet-help-actions a, .wallet-help-actions button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--site-line);
+  border-radius: 5px;
+  background: #151816;
+  color: var(--site-ink);
+  font: inherit;
+  text-decoration: none;
+}
+.wallet-help-actions a[data-metamask] {
+  background: var(--site-accent);
+  color: #141a09;
+}

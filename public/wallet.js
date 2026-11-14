@@ -2,7 +2,7 @@
   const button = document.querySelector('#connect-wallet');
   const status = document.querySelector('#wallet-status');
   const base = '0x2105';
-  const provider = window.crucibleWallet.provider;
+  let provider = window.crucibleWallet.provider;
   let account;
   let chain;
   let updateId = 0;
@@ -29,10 +29,8 @@
   }
 
   button.addEventListener('click', async () => {
-    if (!provider?.request) {
-      status.textContent = 'Open Crucible in a browser with an Ethereum wallet extension.';
-      return;
-    }
+    provider = window.crucibleWallet.provider;
+    if (!provider?.request) return;
     button.disabled = true;
     try {
       if (!account) {
