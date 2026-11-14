@@ -16,7 +16,6 @@ const selectors = {
 const house = '0x6736d2eA9807297F0e56967361B9410854B86a5f';
 const network = '0x2105';
 const addressPattern = /^0x[0-9a-f]{40}$/i;
-const wallet = window.ethereum;
 const byId = id => document.getElementById(id);
 const registry = byId('registry');
 const status = byId('status');
@@ -44,7 +43,8 @@ byId('house').textContent = house;
 for (const [name, [label]] of Object.entries(definitions)) actions.add(new Option(label, name));
 
 function request(method, params = []) {
-  if (!wallet?.request) throw new Error('Open this page in a browser with an Ethereum wallet extension.');
+  const wallet = window.crucibleWallet.provider;
+  if (!wallet?.request) throw new Error('Connect the House wallet first.');
   return wallet.request({ method, params });
 }
 
@@ -106,8 +106,10 @@ byId('connect').addEventListener('click', async () => {
 });
 registry.addEventListener('input', () => clearVerification('Verify the entered Registry address.'));
 for (const event of ['accountsChanged', 'chainChanged', 'disconnect']) {
-  wallet?.on?.(event, () => clearVerification('Wallet changed. Verify the Registry again.'));
+  window.ethereum?.on?.(event, () => clearVerification('Wallet changed. Verify the Registry again.'));
 }
+
+window.addEventListener('crucible-wallet-change', () => clearVerification('Verify the Registry with the connected House wallet.'));
 
 async function verifyRoles(address) {
   const expected = '0x' + house.slice(2).toLowerCase().padStart(64, '0');

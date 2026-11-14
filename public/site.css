@@ -154,3 +154,15 @@ dialog { max-height: 90dvh; }
 @media (max-width: 370px) {
   .home .steps { grid-template-columns: minmax(0, 1fr); }
 }
+
+.header-actions [hidden], .wallet-picker[hidden], .wallet-status[hidden], #connect[hidden] {
+  display: none;
+}
+
+.wallet-picker button { min-height: 44px; }
+.admin-wallet-picker { margin-top: 14px; }
+
+@media (max-width: 650px) {
+  .header-actions .wallet-picker > div,
+  .header-actions .wallet-picker button { width: 100%; }
+}

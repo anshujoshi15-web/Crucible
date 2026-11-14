@@ -2,7 +2,7 @@
   const button = document.querySelector('#connect-wallet');
   const status = document.querySelector('#wallet-status');
   const base = '0x2105';
-  const provider = window.ethereum;
+  const provider = window.crucibleWallet.provider;
   let account;
   let chain;
   let updateId = 0;

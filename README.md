@@ -22,3 +22,9 @@ In **Settings & Redeploy**, select the **Next.js** framework preset, **Node.js 2
 If the subdomain already belongs to a different site type, first deploy the app to a temporary Hostinger domain. Then assign the Crucible subdomain to the working Web App in hPanel. Configure `CRUCIBLE_DATA_DIR` with a writable persistent path outside the deployment checkout so database files survive code releases. The Hostinger database starts empty and needs a separate migration if you want to bring existing workspaces over. Preserve any site-level access restrictions before pointing the custom domain to the app.
 
 After deployment, open the site over HTTPS and check `/about`, `/contact`, and `/admin`. Confirm that the deployment logs show the Next.js preset and that the site opens on the assigned domain.
+
+## RainbowKit and WalletConnect
+
+Create a project in the [Reown Dashboard](https://dashboard.reown.com/) and add its Project ID to the Hostinger environment as `REOWN_PROJECT_ID`. If the project restricts origins, allow `https://crucible.thehouseofjoshi.com` and any preview origin you use. Redeploy to apply the environment setting. Locally, set the same variable in `.env.local`.
+
+The Project ID is a browser-facing identifier. With it configured, the homepage and admin page use RainbowKit for Rainbow, WalletConnect, and installed wallets on Base Mainnet. Without it, they use the installed wallet flow. The House wallet and Registry checks still apply to admin actions.

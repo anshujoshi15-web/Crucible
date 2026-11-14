@@ -76,10 +76,10 @@ try {
 } catch {}
 
 async function sendRegistrySubmission(seed, status) {
-  const provider = window.ethereum;
-  if (!provider?.request) throw new Error('Open Crucible in a browser with an Ethereum wallet extension.');
+  const provider = window.crucibleWallet.provider;
+  if (!provider?.request) throw new Error('Connect a wallet from the Crucible header first.');
   const rpc = (method, params = []) => provider.request({method, params});
-  const [address] = await rpc('eth_requestAccounts');
+  const [address] = await rpc(window.crucibleWallet.managed ? 'eth_accounts' : 'eth_requestAccounts');
   const originator = address?.toLowerCase();
   if (!originator || await rpc('eth_chainId') !== '0x2105') {
     throw new Error('Connect your wallet on Base Mainnet.');
