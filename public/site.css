@@ -110,18 +110,27 @@ input, textarea, select { font-size: 1rem; }
 
 .footer-layout {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(140px, 1fr) minmax(0, 2fr) minmax(0, 1fr);
   align-items: start;
   gap: 0 clamp(24px, 5vw, 64px);
 }
 
-.footer-brand { grid-row: span 2; }
-.footer-brand p { margin: 0; font-size: .875rem; }
+.footer-brand { min-width: 0; }
+.site-footer nav { align-content: start; }
+.site-footer a { color: var(--site-muted); text-decoration: none; }
+.site-footer .brand { color: var(--site-ink); }
+.site-footer a:hover { color: var(--site-accent); }
+.site-footer a:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 4px; }
+.footer-bottom { border-top: 1px solid var(--site-line); margin-top: 20px; padding-top: 16px; }
+.footer-bottom p { margin: 0; color: var(--site-muted); font-size: .8125rem; line-height: 1.7; }
+.footer-bottom a { text-decoration: underline; text-underline-offset: .2em; }
 
 dialog { max-height: 90dvh; }
 .dialog-top button { min-width: 44px; min-height: 44px; }
 
 @media (max-width: 1050px) {
+  .footer-layout { grid-template-columns: 1fr 2fr; gap: 8px 24px; }
+  .footer-brand { grid-row: span 2; }
   .site-header-home .header-layout { grid-template-columns: 1fr auto; }
   .site-header-home nav { grid-row: 2; grid-column: 1 / -1; justify-content: start; }
 }
@@ -144,7 +153,7 @@ dialog { max-height: 90dvh; }
   }
 
   .wallet-status { text-align: start; }
-  .footer-layout { grid-template-columns: 1fr; gap: 8px; }
+  .footer-layout { grid-template-columns: 1fr; gap: 12px; }
   .footer-brand { grid-row: auto; }
   .site-footer nav + nav { border-top: 1px solid var(--site-line); }
   .home .filters .btn, .home .actions .btn { min-height: 44px; }

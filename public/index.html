@@ -55,7 +55,6 @@ h1,h2{font-weight:700;letter-spacing:-.045em}
   <div class="chrome-wrap footer-layout">
     <div class="footer-brand">
       <a class="brand" href="/"><img class="crucible-mark" src="/crucible-logo.png" width="36" height="36" alt="">Crucible</a>
-      <p><a href="https://thehouseofjoshi.com/">House of Joshi</a></p>
     </div>
     <nav aria-label="Site links">
       <a href="/#seeds">Seed board</a>
@@ -70,6 +69,9 @@ h1,h2{font-weight:700;letter-spacing:-.045em}
       <a href="https://discord.com/invite/uH9zVeAwDu">Discord</a>
       <a href="https://www.instagram.com/thehouseofjoshi">Instagram</a>
     </nav>
+  </div>
+  <div class="chrome-wrap footer-bottom">
+    <p>&copy; 2026 <a href="https://thehouseofjoshi.com/">House of Joshi</a>. All rights reserved.</p>
   </div>
 </footer>
 <dialog id="drop"><div class="dialog-top"><h2>Draft a Seed</h2><button type="button" class="btn" data-close aria-label="Close">×</button></div><form id="draft"><label for="title">Seed title</label><input id="title" name="title" required maxlength="100"><label for="problem">Problem</label><textarea id="problem" name="problem" rows="3" required maxlength="1500"></textarea><label for="mechanism">Proposed mechanism</label><textarea id="mechanism" name="mechanism" rows="3" required maxlength="2000"></textarea><label for="roles">Needed roles</label><input id="roles" name="roles" maxlength="200"><p class="muted">Submission records a commitment on Base Mainnet and charges 30 smallest EVO units plus wallet gas. Seed details stay in your private workspace.</p><label for="submission-tx" hidden>Submission transaction hash</label><input id="submission-tx" hidden autocomplete="off" spellcheck="false"><div class="form-actions publish-actions"><button class="btn" type="submit">Save draft locally</button><button class="btn primary" type="submit" value="publish">Submit to Incubator</button></div><p id="form-status" class="status" role="status"></p></form></dialog>
