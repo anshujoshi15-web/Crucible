@@ -2,7 +2,7 @@ const storageKey = 'crucible-seed-drafts';
 let drafts = [];
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-  if (Array.isArray(saved)) drafts = saved.filter(seed => seed && typeof seed.title === 'string');
+  if (Array.isArray(saved)) drafts = saved.filter(seed => seed && typeof seed.title === 'string').map(seed => ({...seed, stage: seed.stage === 'Prototype' ? 'Building' : seed.stage}));
 } catch {}
 let filter = 'All';
 const board = document.querySelector('#cards');

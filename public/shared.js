@@ -12,7 +12,7 @@ try {
 } catch {}
 
 function sharedCards() {
-  return Object.values(sharedSeeds).filter(seed => seed?.title).map(seed => ({...seed, shared: true}));
+  return Object.values(sharedSeeds).filter(seed => seed?.title).map(seed => ({...seed, stage: seed.stage === 'Prototype' ? 'Building' : seed.stage, shared: true}));
 }
 
 function randomKey() {
