@@ -1,8 +1,3 @@
-const examples = [
-  {title:'Open Repair Atlas', stage:'Incubation', problem:'Repair instructions and parts lists are scattered across forums and manuals.', mechanism:'Create a community-maintained index of repair guides, organized by model and component.', roles:'Technical writers, product designers, maintainers', branches:'Guide schema · Search wireframes'},
-  {title:'Community Energy Ledger', stage:'Prototype', problem:'Shared solar projects need a clear record of production and member allocations.', mechanism:'Prototype a ledger that turns meter readings into verifiable allocation reports for members.', roles:'Data engineers, energy researchers, frontend builders', branches:'Meter data specification · Ledger prototype · Member dashboard'},
-  {title:'Local Skills Commons', stage:'Spark', problem:'Neighborhood groups struggle to find people who can help with small, specific tasks.', mechanism:'Build an opt-in directory of skills and availability for neighborhood projects.', roles:'Community organizers, UX researchers, developers', branches:'Open for contributions'}
-];
 const storageKey = 'crucible-seed-drafts';
 let drafts = [];
 try {
@@ -26,7 +21,7 @@ function element(tag, value, className) {
 function showSeed(seed) {
   document.querySelector('#detail-title').textContent = seed.title;
   const content = document.querySelector('#detail-content');
-  content.replaceChildren(element('p', seed.local ? 'Spark · Local draft' : seed.stage + ' · Sample Seed', 'tag'));
+  content.replaceChildren(element('p', seed.local ? 'Spark · Local draft' : seed.stage, 'tag'));
   for (const [label, value] of [['Problem', seed.problem], ['Proposed mechanism', seed.mechanism], ['Needed roles', seed.roles], ['Branches', seed.branches]]) {
     if (value) content.append(element('h3', label), element('p', value, 'muted'));
   }
@@ -45,8 +40,13 @@ function showSeed(seed) {
 
 function renderBoard() {
   filters.forEach(button => button.setAttribute('aria-pressed', button.dataset.filter === filter));
-  const seeds = [...drafts, ...examples, ...sharedCards()].filter(seed => filter === 'All' || seed.stage === filter);
+  const seeds = [...drafts, ...sharedCards()].filter(seed => filter === 'All' || seed.stage === filter);
   board.replaceChildren();
+  if (!seeds.length) {
+    board.append(element('p', filter === 'All'
+      ? 'No Seeds in this browser yet. Drop a Seed to start, or open a collaborator invitation.'
+      : 'No Seeds at this stage in this browser.', 'muted'));
+  }
   for (const seed of seeds) {
     const card = element('article', '', 'card');
     const open = element('button', 'View Seed ↗', 'btn');
